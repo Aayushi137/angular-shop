@@ -1,0 +1,32 @@
+<h2>Products</h2>
+<!--checking the products so that it can run as a loop-->
+<div *ngFor="let product of products">
+  <!--1.keeping the link in a product name with the details
+2.assigning router to it so that it can generate a url with the product id while clicking the product name-->
+  <h3>
+    <a
+      [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"
+    >
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <!-- . . . -->
+
+  <!--To show up the description on page-->
+  <p *ngIf="product.description">
+    Description:{{product.description}}
+  </p>
+  <p *ngIf="product.price">
+    Price:{{product.price}}
+  </p>
+  <!--share button which can be shared and giver laert whose code is written in .ts file-->
+  <button (click)="share()">
+    Share
+  </button>
+  <!--For notifying we have kept an even notify which is connecting through its child comonent and giving the command to the parent component to procceed with events-->
+
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
+</div>
